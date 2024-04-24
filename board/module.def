@@ -1,0 +1,8 @@
+
+BOARD_SRCS=
+BOARD_SRCS+=board/board.c\
+            board/version.c\
+            board/rom.c
+
+MODULE_SRCS+=$(BOARD_SRCS)
+

@@ -1,0 +1,24 @@
+
+#nacuna ??? BOARD SELECTS THE MCU
+choice 
+        prompt "Select musictribe board"
+config SHOPEE_BOARD
+        bool "GD32F407VET6 board from shopee.ph"
+endchoice # music tribe boards
+
+config BOARD_NAME
+        string
+        default "bm11m"         if BM11M
+        default "bm15m"         if BM15M
+        default "bm18m"         if BM18M
+        default "rl06"          if RL06
+        default "shopee_board"  if SHOPEE_BOARD
+
+source mcu/Kconfig
+source arm/Kconfig
+
+if SHOPEE_BOARD
+source board/shopee_board/Kconfig
+endif
+
+

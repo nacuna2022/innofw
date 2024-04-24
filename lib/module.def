@@ -1,0 +1,4 @@
+
+MODULE_SRCS+=lib/refcount.c
+
+-include $(MODULE_SRCS:.c=.ddc)

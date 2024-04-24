@@ -1,0 +1,12 @@
+SHOPEE_SCRS=
+SHOPEE_SRCS+=src/shopee_board.c
+
+SHOPEE_SRCS:=$(patsubst %,board/$(CONFIG_BOARD_NAME)/%,$(SHOPEE_SRCS))
+
+MODULE_SRCS+=$(SHOPEE_SRCS)
+
+-include $(SHOPEE_SRCS:.c=.ddc)
+
+# also pull in the generic board defs
+include board/module.def
+

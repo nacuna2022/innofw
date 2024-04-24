@@ -1,0 +1,67 @@
+
+# - ARM ARCHITECTURE ----------------------------------------------------------
+config ARMV6M
+        bool
+        default n
+
+config ARMV7M
+        bool
+        default n
+
+config ARMV8M
+        bool
+        default n
+
+config ARM_ARCH
+        string
+        default "armv6"         if ARMV6
+        default "armv7-m"       if ARMV7M
+        default "armv8-m"       if ARMV8M
+
+
+# - ARM CORE ------------------------------------------------------------------
+config CORTEXM3
+        bool
+        select ARMV7M
+        select THUMB_MODE
+
+config CORTEXM4
+        bool
+        select ARMV7M
+        select THUMB_MODE
+        select HAVE_FPU
+
+config CORTEXM7
+        bool
+        select ARMV7M
+        select THUMB_MODE
+        select HAVE_FPU
+
+config ARM_CORE
+        string
+        default "cortex-m3"     if CORTEXM3
+        default "cortex-m4"     if CORTEXM4
+        default "cortex-m7"     if CORTEXM7
+
+
+comment "ARM Options"
+
+config TOOLCHAIN_PREFIX
+        string "toolchain prefix"
+        default "arm-none-eabi"
+
+config THUMB_MODE
+        bool "Thumb mode"
+        default n
+
+config SOFT_FLOATS
+        bool "Use softFPU"
+        default n
+
+config HAVE_FPU
+        bool "fpu support"
+        default n
+
+if ARMV7M
+source arm/armv7-m/Kconfig
+endif

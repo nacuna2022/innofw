@@ -1,0 +1,9 @@
+
+if ARMV7M
+comment "ARMv7-M Options"
+
+config ARMV7M_OPTION1
+        bool "placeholder for ARMv7-M options"
+
+
+endif # ARMV7M

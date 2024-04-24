@@ -1,0 +1,113 @@
+mainmenu "Musictribe RTOS"
+
+menu "Build Setup"
+
+config IMAGE_NAME
+        string "Output image filename"
+        default "innofw"
+
+menu "Binary output formats" 
+config RAW_BINARY
+        bool 'Raw binary'
+        default y
+config INTEL_HEX
+        bool "Intel Hex"
+        default y
+config MUSICTRIBE_SYX
+        bool "MusicTribe Syx"
+        default y
+        depends on INTEL_HEX
+endmenu # Binary output formats
+
+choice 
+        prompt "Optimization level"
+config OPTIMIZATION_NONE
+        bool "No optimization"
+config OPTIMIZATION_NORMAL
+        bool "Normal optimization"
+config OPTIMIZATION_AGGRESSIVE
+        bool "Aggressive optimization"
+endchoice # Optimization level
+
+config GENERATE_LINK_MAP
+        bool "Generate link map"
+
+config GENERATE_SYMBOL_FILE
+        bool "Generate symbol file"
+
+endmenu # Build Setup
+
+menu "System Type"
+source board/Kconfig
+endmenu
+
+menu "Board options"
+config HAVE_PRODUCT_INFO
+        bool "Product Info"
+
+config MANUFACTURER_ID
+        hex "Manufacturer ID"
+        default 0x112233
+        depends on HAVE_PRODUCT_INFO
+
+config MANUFACTURER_ID_LEN
+        int "Manufacturer ID length"
+        default 3
+        depends on HAVE_PRODUCT_INFO
+
+config MODEL_ID
+        hex "Model ID"
+        default 0x112233
+        depends on HAVE_PRODUCT_INFO
+
+config MODEL_ID_LENGTH
+        int "Model ID length"
+        default 3
+        depends on HAVE_PRODUCT_INFO
+
+config MODEL_CODE
+        string "Model code"
+        default "1234-INNOFW"
+        depends on HAVE_PRODUCT_INFO
+
+config MODEL_NAME
+        string "Model name"
+        default "Shopee devkit"
+        depends on HAVE_PRODUCT_INFO
+
+
+# -----------------
+
+config HAVE_DFU_INFO
+        bool "DFU Info"
+        help
+                Include DFU information on this firmware.
+
+
+# -----------------
+
+config HAVE_PARAMETERS_INFO
+        bool "Parameters Info"
+        help
+                Include commandline information on this firmware.
+
+config CMDLINE_MAXLEN
+        int "Command line maximum buffer size"
+        default 16
+        depends on HAVE_PARAMETERS_INFO
+
+ 
+
+
+endmenu # "Board options"
+
+menu "Devices"
+source device/Kconfig
+endmenu
+
+menu "Kernel"
+source kernel/Kconfig
+endmenu
+
+
+

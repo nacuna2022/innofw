@@ -1,0 +1,197 @@
+comment "GD32F4 Options"
+
+choice 
+        prompt "Select GD32F4 Chip"
+
+config GD32F450
+        bool "GD32F450"
+config GD32F405
+        bool "GD32F405"
+config GD32F407
+        bool "GD32F407"
+        select GD32F4_RCU
+        select GD32F4_PMU
+config GD32F470
+        bool "GD32F470"
+config GD32F425
+        bool "GD32F425"
+        select GD32F4_RCU
+        select GD32F4_PMU
+config GD32F427
+        bool "GD32F427"
+endchoice
+
+config GD32F4_CHIP
+        string
+        default "GD32F450"      if GD32F450
+        default "GD32F405"      if GD32F405
+        default "GD32F407"      if GD32F407
+        default "GD32F470"      if GD32F470
+        default "GD32F425"      if GD32F425
+        default "GD32F427"      if GD32F427
+
+
+menu "GD32F4 Peripherals"
+
+config GD32F4_ADC
+        bool "ADC"
+        default n
+config GD32F4_CAN
+        bool "CAN"
+        default n
+config GD32F4_CRC
+        bool "CRC"
+        default n
+config GD32F4_CTC
+        bool "CTC"
+        default n
+config GD32F4_DAC
+        bool "DAC"
+        default n
+config GD32F4_DBG
+        bool "DBG"
+        default n
+config GD32F4_DCI
+        bool "DCI"
+        default n
+config GD32F4_DMA
+        bool "DMA"
+        default n
+config GD32F4_ENET
+        bool "Enet"
+        default n
+config GD32F4_EXMC
+        bool "Exti"
+config GD32F4_EXTI
+        bool "Exmc"
+        default n
+config GD32F4_FMC
+        bool "FMC"
+        default n
+config GD32F4_FWDGT
+        bool "FWDGT"
+        default n
+config GD32F4_GPIO
+        bool "GPIO"
+        default n
+config GD32F4_I2C
+        bool "I2C"
+        default n
+config GD32F4_IPA
+        bool "IPA"
+        default n
+config GD32F4_IREF
+        bool "Iref"
+        default n
+config GD32F4_MISC
+        bool "Misc"
+        default n
+config GD32F4_PMU
+        bool "PMU"
+        default n
+config GD32F4_RCU
+        bool "RCU"
+        default n
+config GD32F4_RTC
+        bool "RTC"
+        default n
+config GD32F4_SDIO
+        bool "SDIO"
+        default n
+config GD32F4_SPI
+        bool "SPI"
+        default n
+config GD32F4_SYSCFG
+        bool "SysCfg"
+        default n
+config GD32F4_TIMER
+        bool "Timer"
+        default n
+config GD32F4_TLI
+        bool "TLI"
+        default n
+config GD32F4_TRNG
+        bool "TRNG"
+        default n
+config GD32F4_USART
+        bool "USART"
+        default n
+config GD32F4_WWDGT
+        bool "WWDGT"
+        default n
+endmenu
+
+choice SYSTEM_CLOCK
+        prompt "GD32F4 system clock"
+config IRC16M
+        bool "ICR16M"
+config HXTAL
+        bool "HXTAL"
+config 120M_PLL_IRC16M
+        bool "120M PLL IRC16M"
+config 120M_PLL_8M_HXTAL
+        bool "120M PLL 8M HXTAL"
+config 120M_PLL_25M_HXTAL
+        bool "120M PLL 25M HXTAL"
+config 168M_PLL_IRC16M
+        bool "168M PLL IRC16M"
+config 168M_PLL_8M_HXTAL
+        bool "168M PLL 8M HXTAL"
+config 168M_PLL_25M_HXTAL
+        bool "168M PLL 25M HXTAL"
+config 200M_PLL_IRC16M
+        bool "200M PLL IRC16M"
+config 200M_PLL_8M_HXTAL
+        bool "200M PLL 8M HXTAL"
+config 200M_PLL_25M_HXTAL
+        bool "200M PLL 25M HXTAL"
+config 240M_PLL_IRC16M
+        bool "240M PLL IRC16M"
+config 240M_PLL_8M_HXTAL
+        bool "240M PLL 8M HXTAL"
+config 240M_PLL_25M_HXTAL
+        bool "240M PLL 25M HXTAL"
+endchoice # CONFIG_SYSTEM_CLOCK
+
+#define __SYSTEM_CLOCK_IRC16M                   (uint32_t)(__IRC16M)
+#define __SYSTEM_CLOCK_HXTAL                    (uint32_t)(__HXTAL)
+#define __SYSTEM_CLOCK_120M_PLL_IRC16M          (uint32_t)(120000000)
+#define __SYSTEM_CLOCK_120M_PLL_8M_HXTAL        (uint32_t)(120000000)
+#define __SYSTEM_CLOCK_120M_PLL_25M_HXTAL       (uint32_t)(120000000)
+#define __SYSTEM_CLOCK_168M_PLL_IRC16M          (uint32_t)(168000000)
+#define __SYSTEM_CLOCK_168M_PLL_8M_HXTAL        (uint32_t)(168000000)
+#define __SYSTEM_CLOCK_168M_PLL_25M_HXTAL       (uint32_t)(168000000)
+#define __SYSTEM_CLOCK_200M_PLL_IRC16M          (uint32_t)(200000000)
+#define __SYSTEM_CLOCK_200M_PLL_8M_HXTAL        (uint32_t)(200000000)
+#define __SYSTEM_CLOCK_200M_PLL_25M_HXTAL       (uint32_t)(200000000)
+#define __SYSTEM_CLOCK_240M_PLL_IRC16M          (uint32_t)(240000000)
+#define __SYSTEM_CLOCK_240M_PLL_8M_HXTAL        (uint32_t)(240000000)
+#define __SYSTEM_CLOCK_240M_PLL_25M_HXTAL       (uint32_t)(240000000)
+
+#use this in -DHXTAL_VALUE=$(CONFIG_HXTAL_VALUE)
+config HXTAL_VALUE
+        int "High speed crystal oscillator (HXTAL) value in Hz"     
+        default 8000000         if 120M_PLL_8M_HXTAL || 168M_PLL_8M_HXTAL || 200M_PLL_8M_HXTAL || 240M_PLL_8M_HXTAL
+        default 25000000        if 120M_PLL_25M_HXTAL || 168M_PLL_25M_HXTAL || 200M_PLL_25M_HXTAL || 240M_PLL_25M_HXTAL
+config HXTAL_STARTUP_TIMEOUT
+        hex "High speed crystal oscillator timeout"
+        default 0xFFFF
+
+config IRC16M_VALUE
+        int
+        default 16000000
+
+config LXTAL_VALUE
+        int "Low speed crystal oscillator (LXTAL)in Hz"
+        default 32768
+
+
+#use this is -D __SYSTEM_CLOCK_XXX_PLL_XXX=$(CONFIG_SYSTEM_CLOCK_VALUE)
+config SYSTEM_CLOCK_VALUE
+        int
+        default 120000000       if 120M_PLL_IRC16M || 120M_PLL_8M_HXTAL || 120M_PLL_25M_HXTAL
+        default 168000000       if 168M_PLL_IRC16M || 168M_PLL_8M_HXTAL || 168M_PLL_25M_HXTAL
+        default 200000000       if 200M_PLL_IRC16M || 200M_PLL_8M_HXTAL || 200M_PLL_25M_HXTAL
+        default 240000000       if 240M_PLL_IRC16M || 240M_PLL_8M_HXTAL || 240M_PLL_25M_HXTAL
+
+

@@ -1,0 +1,9 @@
+
+DEVICE_CORE_SRCS=device_core.c\
+
+DEVICE_SRCS=$(patsubst %,device/%, $(DEVICE_CORE_SRCS))
+
+MODULE_SRCS+=$(DEVICE_SRCS)
+
+-include $(DEVICE_SRCS:.c=.ddc)
+

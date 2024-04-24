@@ -1,0 +1,32 @@
+
+#nacuna ??? MCU SELECTS THE ARM CORE (READ!!! not the ARM ARCHITECTURE)
+choice 
+        prompt "MCU Selection"
+        default STM32H7         if RL06
+        default GD32F4          if BM11M || BM15M || BM18M || GD32F425_DEMO
+
+config STM32H7
+        bool "STM32H7"
+        select CORTEXM7
+config GD32F4
+        bool "GD32F4"
+        select CORTEXM4
+endchoice # MCU Selection
+
+config MCU_INTERRUPT_COUNT
+        int "MCU Interrupt Count"
+        default 150     if STM32H7
+        default 91      if GD32F4
+
+config MCU
+        string
+        default "stm32h7"       if STM32H7
+        default "gd32f4"        if GD32F4
+
+if STM32H7
+source mcu/stm32h7/Kconfig
+endif
+
+if GD32F4
+source mcu/gd32f4/Kconfig
+endif

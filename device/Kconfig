@@ -1,0 +1,20 @@
+
+
+config ADC
+        bool "Enable ADC"
+        default n
+
+choice 
+        prompt "Soft Averaging Algorithm"
+        depends on ADC
+config ADC_SOFT_NOOP
+        bool "Turn Off Software Averaging"
+config ADC_SOFT_RA
+        bool "Running Average"
+config ADC_SOFT_EMA
+        bool "Exponential Moving Average"
+endchoice #ADC
+
+
+
+        

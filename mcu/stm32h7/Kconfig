@@ -1,0 +1,218 @@
+comment "STM32H7 Options"
+
+config STM32H7_HAL
+        bool
+        default y
+        select STM32H7_CORTEX
+        select STM32H7_RCC
+
+menu "STM32H7 Peripherals"
+config STM32H7_ADC
+        bool "ADC"
+        default n
+        select STM32H7_DMA
+config STM32H7_CEC
+        bool "CEC"
+        default n
+config STM32H7_COMP
+        bool "Comp"
+        default n
+config STM32H7_CORDIC
+        bool "Cordic"
+        default n
+config STM32H7_CORTEX
+        bool "Cortex"
+        default n
+config STM32H7_CRC
+        bool "CRC"
+        default n
+config STM32H7_CRYP
+        bool "Cryp"
+        default n
+        select STM32H7_DMA
+config STM32H7_DAC
+        bool "DAC"
+        default n
+        select STM32H7_DMA
+config STM32H7_DCMI
+        bool "DCMI"
+        default n
+        select STM32H7_DMA
+config STM32H7_DMA2D
+        bool "DMA2D"
+        default n
+config STM32H7_DFSDM
+        bool "DFSDM"
+        default n
+        select STM32H7_DMA
+config STM32H7_DMA
+        bool "DMA"
+        default n
+config STM32H7_DSI
+        bool "DSI"
+        default n
+config STM32H7_DTS
+        bool "DTS"
+        default n
+config STM32H7_ETH
+        bool "Eth"
+        default n
+config STM32H7_EXTI
+        bool "Exti"
+        default n
+config STM32H7_FDCAN
+        bool "FDCAN"
+        default n
+config STM32H7_FLASH
+        bool "Flash"
+        default n
+config STM32H7_FMAC
+        bool "FMAC"
+        default n
+config STM32H7_GFXMMU
+        bool "GFX MMU"
+        default n
+config STM32H7_GPIO
+        bool "GPIO"
+        default n
+config STM32H7_HASH
+        bool "Hash"
+        default n
+        select STM32H7_DMA
+config STM32H7_HCD
+        bool "HCD"
+        default n
+config STM32H7_HRTIM
+        bool "Hrtim"
+        default n
+        select STM32H7_DMA
+config STM32H7_HSEM
+        bool "Hsem"
+        default n
+config STM32H7_I2C
+        bool "I2C"
+        default n
+        select STM32H7_DMA
+config STM32H7_I2S
+        bool "I2S"
+        default n
+        select STM32H7_DMA
+config STM32H7_IRDA
+        bool "IRDA"
+        default n
+        select STM32H7_DMA
+config STM32H7_IWDG
+        bool "IWDG"
+        default n
+config STM32H7_JPEG
+        bool "Jpeg"
+        default n
+        select STM32H7_MDMA
+config STM32H7_LPTIM
+        bool "LPTIM"
+        default n
+config STM32H7_LTDC
+        bool "LTDC"
+        default n
+config STM32H7_MDIOS
+        bool "MDIOS"
+        default n
+config STM32H7_MDMA
+        bool "MDMA"
+        default n
+config STM32H7_MMC
+        bool "MMC"
+        default n
+        select STM32H7_DMA
+config STM32H7_NAND
+        bool "Nand"
+        default n
+config STM32H7_NOR
+        bool "Nor"
+        default n
+config STM32H7_OPAMP
+        bool "Opamp"
+        default n
+config STM32H7_OSPI
+        bool "OSPI"
+        default n
+config STM32H7_OTFDEC
+        bool "OTFDEC"
+        default n
+config STM32H7_PCD
+        bool "PCD"
+        default n
+config STM32H7_PSSI
+        bool "PSSI"
+        default n
+config STM32H7_PWR
+        bool "PWR"
+        default n
+config STM32H7_QSPI
+        bool "QSPI"
+        default n
+        select STM32H7_MDMA
+config STM32H7_RAMECC
+        bool "RAM ECC"
+        default n
+config STM32H7_RCC
+        bool "RCC"
+        default n
+        select STM32H7_GPIO
+        select STM32H7_FLASH
+config STM32H7_RNG
+        bool "RNG"
+        default n
+config STM32H7_RTC
+        bool "RTC"
+        default n
+config STM32H7_SAI
+        bool "SAI"
+        default n
+        select STM32H7_DMA
+config STM32H7_SD
+        bool "SD"
+        default n
+config STM32H7_SDRAM
+        bool "SDRAM"
+        default n
+        select STM32H7_MDMA
+config STM32H7_SMARTCARD
+        bool "Smartcard"
+        default n
+        select STM32H7_DMA
+config STM32H7_SMBUS
+        bool "SMBUS"
+        default n
+config STM32H7_SPDIFRX
+        bool "SPDIFRX"
+        default n
+        select STM32H7_DMA
+config STM32H7_SPI
+        bool "SPI"
+        default n
+        select STM32H7_DMA
+config STM32H7_SRAM
+        bool "SRAM"
+        default n
+        select STM32H7_MDMA
+config STM32H7_SWPMI
+        bool "SWPMI"
+        default n
+        select STM32H7_DMA
+config STM32H7_TIM
+        bool "TIM"
+        default n
+        select STM32H7_DMA
+config STM32H7_UART
+        bool "UART"
+        default n
+        select STM32H7_DMA
+config STM32H7_USART
+        bool "USART"
+        default n
+        select STM32H7_DMA
+config STM32H7_WWDG
+        bool "WWDG"
+        default n
+endmenu

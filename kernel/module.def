@@ -1,0 +1,15 @@
+KERNEL_SRCS=
+
+KERNEL_SRCS+=kernel/sched.c\
+             kernel/timer.c\
+             kernel/idle.c\
+             kernel/waitqueue.c\
+             kernel/semaphore.c\
+             kernel/dpc.c\
+             kernel/irq.c\
+             kernel/shutdown.c
+
+MODULE_SRCS+=$(KERNEL_SRCS)
+
+-include $(KERNEL_SRCS:.c=.ddc)
+

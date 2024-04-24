@@ -1,0 +1,38 @@
+
+config TASK_NAME_LENGTH
+        int "Task name length"
+        default 16
+
+config TASK_STACK_SIZE_SHIFT
+        int
+        default 10
+
+choice
+        prompt "Task stack size"
+        default TASK_STACK_2KB
+config TASK_STACK_1KB
+        bool "1KB stack"
+config TASK_STACK_2KB
+        bool "2KB stack"
+config TASK_STACK_3KB
+        bool "3KB stack"
+config TASK_STACK_4KB
+        bool "4KB stack"
+endchoice 
+
+config TASK_STACK_SIZE
+        hex
+        default 0x400   if TASK_STACK_1KB
+        default 0x800   if TASK_STACK_2KB
+        default 0xC00   if TASK_STACK_3KB
+        default 0x1000  if TASK_STACK_4KB
+
+config TASK_PRIVATE_SIZE
+        int "Task private size"
+        default 8
+        default 16       if CONFIG_ARMV7M
+        
+config HZ
+        int "Kernel tick Hertz"
+        default 1000
+
