@@ -1,0 +1,34 @@
+@startuml
+
+[*] --> device_uninitialized
+device_uninitialized --> device_initialized : initialize_device()
+device_initialized --> device_running : start_device()
+device_running --> device_suspended : suspend_device()
+device_running --> device_shutdown : stop_device()
+device_suspended --> device_running : device_resume()
+device_shutdown --> [*]
+
+
+device_uninitialized : device initialization code is not executed yet.
+device_uninitialized : needs to be initialized.
+
+device_initialized : device is initialized both lowlevel driver and midlayer.
+device_initialized : can safely be transitioned to running now.
+
+device_running : device is operating normally.
+device_running : device can be put into low power (suspended) mode.
+device_running : device can be powered down during system shutdown.
+
+device_suspended : device is operating in low power mode.
+device_suspended : lower power mode means device is not running.
+device_suspended : device can be put into running state to work normally again.
+
+device_shutdown : device is not running anymore. 
+device_shutdown : driver resources are freed back to the system. 
+device_shutdown : device is also powered down.
+
+state device_uninitialized
+note "all states are system initiated.\nthere will be no API that can be called\nto force a device to be started or stopped\nfor example" as n1
+
+@enduml
+
