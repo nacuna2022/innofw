@@ -19,11 +19,7 @@ SECTIONS
                 . = ALIGN(8);
                 *(.text*)
 
-                __device_array_start = .;
-                *(.devices)
-                __driver_array_start = .;
-                *(.drivers)
-                __driver_array_end = .;
+
 
                 __initcall_start = .;
                 *(.initcall)
@@ -39,9 +35,9 @@ SECTIONS
 
                 __devices_info = .;
                 LONG(__device_array_start);
-                LONG((__driver_array_start - __device_array_start) / 4);
                 LONG(__driver_array_start);
-                LONG((__driver_array_end - __driver_array_start) / 4);
+                LONG(__driver_array_start);
+                LONG(__driver_array_end);
 
                 __copy_info = .;
                 LONG(__etext);
@@ -66,6 +62,12 @@ SECTIONS
                 __data_start = .;
                 *(.data)
                 *(.data*)
+
+                __device_array_start = .;
+                *(.devices)
+                __driver_array_start = .;
+                *(.drivers)
+                __driver_array_end = .;
 
                 . = ALIGN(4);
                 __data_end = .;

@@ -69,7 +69,7 @@ static void prepare_shutdown(enum shutdown_reason reason)
                 hook->fn(hook->arg, reason);
         }
 
-        exit_device_core();
+        shutdown_device_core();
         return;
 }
 
